@@ -168,6 +168,9 @@ def get_stations_info(url):
         infos.append(row)
     return pd.DataFrame(infos, columns=["Name", "Address", "City", "Province", "Phone", "Extra"])
 
-stations = collect()
-stations.to_csv("stations.csv", index=False)
-print("done")
+
+if __name__ == "__main__":
+    stations = collect()
+    print('\033[37m' + f"Exporting to csv...")
+    stations.to_csv("RezGasStations.csv", index=False)
+    print('\033[92m' + f"Successfully exported to csv!")

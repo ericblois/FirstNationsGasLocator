@@ -112,9 +112,9 @@ key_cities = [
 
 ALL_HREFS = {}
 
-urls = pd.read_csv("links.csv")
+'''urls = pd.read_csv("links.csv")
 for url in urls["Link"]:
-    ALL_HREFS[url] = True
+    ALL_HREFS[url] = True'''
 
 #driver.get("https://firstnationsgas.ca/search/")
 
@@ -244,13 +244,15 @@ def get_all_info():
         stations.append(get_station_info(href))
     return pd.DataFrame(stations, columns=['Name', 'Phone', 'Email', 'Band', 'Street Address', 'City', 'Province', 'Postal Code', 'Features', 'Serves'])
 
-#get_all_hrefs()
-#links = list(ALL_HREFS.keys())
-#link_df = pd.DataFrame(links, columns=['Link'])
-#link_df.to_csv("links.csv", index=False)
-#print(ALL_HREFS)
-#get_station_info('https://firstnationsgas.ca/station/gen7-fuel-moravian/')
-#get_hrefs("Yorkton, Saskatchewan")
-stations = get_all_info()
-stations.to_csv("stations.csv", index=False)
-print("done")
+if __name__ == "__main__":
+    get_all_hrefs()
+    #links = list(ALL_HREFS.keys())
+    #link_df = pd.DataFrame(links, columns=['Link'])
+    #link_df.to_csv("links.csv", index=False)
+    #print(ALL_HREFS)
+    #get_station_info('https://firstnationsgas.ca/station/gen7-fuel-moravian/')
+    #get_hrefs("Yorkton, Saskatchewan")
+    stations = get_all_info()
+    print('\033[37m' + f"Exporting to csv...")
+    stations.to_csv("FirstNationsGasStations.csv", index=False)
+    print('\033[92m' + f"Successfully exported to csv!")
